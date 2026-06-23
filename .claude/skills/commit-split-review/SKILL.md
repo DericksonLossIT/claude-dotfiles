@@ -47,7 +47,7 @@ Stage and commit per the approved plan. Use `git add <paths>` (or `git add -p` f
 End every commit message with the required trailer:
 
 ```
-Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Co-Authored-By: Claude <noreply@anthropic.com>
 ```
 
 After committing, show `git log main..HEAD --oneline` (or the last N commits) so the user sees the actual resulting history, not just the plan.

@@ -36,19 +36,13 @@ One feature = one branch. If the work splits into independent features, make sep
 
 ## Step 3 — Implement
 
-Build the feature, matching the surrounding code's conventions (this repo: integer-centavos money, soft deletes, UUIDs, pt-BR domain terms, DK-XXXX error codes — see CLAUDE.md). Stay inside the feature's scope; park unrelated cleanups for their own branch rather than smuggling them in.
+Build the feature, matching the surrounding code's conventions (see the project's CLAUDE.md for repo-specific style, domain terms, and patterns). Stay inside the feature's scope; park unrelated cleanups for their own branch rather than smuggling them in.
 
 Do **not** commit incrementally as you go unless the change is large enough that checkpoints help. The commit *story* is composed deliberately at the end by `commit-split-review`, not accreted ad hoc. (If you do checkpoint, keep them rough — they'll be reshaped.)
 
 ## Step 4 — Verify before handing off
 
-Run the project's own gates and make them pass before review. For this repo:
-
-- `npm run build` — type-check + build frontend
-- `cargo check` (from `src-tauri/`) — backend compiles
-- `cargo clippy` (from `src-tauri/`) if backend logic changed
-
-Substitute the target project's build/test/lint commands. A feature isn't ready for review until its gates are green. Report any failure you can't resolve instead of pushing past it.
+Run the project's own gates and make them pass before review. Check CLAUDE.md for the project's build/test/lint commands. A feature isn't ready for review until its gates are green. Report any failure you can't resolve instead of pushing past it.
 
 ## Step 5 — Hand off
 

@@ -1,6 +1,6 @@
 ---
 name: tier-tasks-by-model
-description: Triage a roadmap or backlog into Opus/Sonnet/Haiku task briefs so work can be delegated across model tiers. Use when the user wants to organize/tier/triage tasks by model, asks which model should do a task, or wants to split work across Opus, Sonnet, and Haiku.
+description: Triage a roadmap, backlog, or plan into Opus/Sonnet/Haiku task briefs so work can be delegated across model tiers. Use when the user wants to organize/tier/triage tasks by model, asks which model should do a task, or wants to split work across Opus, Sonnet, and Haiku.
 ---
 
 # Tier tasks by model
@@ -50,20 +50,4 @@ Reviewing mechanical clones with Opus wastes the savings of using Haiku at all. 
 
 ## Step 6 — Execution mechanism
 
-Default to **separate sessions** with the model switched per tier file (cheapest, most controllable — each tier keeps a lean context). Subagent orchestration is an option when the user wants hands-off dispatch, but it's pricier and subagents start cold. Confirm the user's preference rather than assuming.
-
----
-
-## Worked example (Deck — a Tauri/React POS app)
-
-A real triage of remaining Phase 1 + sale-flow work:
-
-**Haiku** (clone existing `customers.rs` / `CustomersPage.tsx`): Categories CRUD, Suppliers CRUD, swap PDV client-side filter for the existing backend `search_products`, sidebar/route wiring.
-
-**Sonnet** (judgment in a known design): keyboard nav across CRUD pages, CSV product import (pt-BR money parsing → i64 centavos), caixa open/close + POS gating, payment modal (cash/change, card/PIX, split), sale persistence + stock decrement, receipt print, item-level discount, sale cancellation, stock-entry module.
-
-**Opus** (pattern-setting / money-txn / reviews): toast API + `DK-XXXX` error taxonomy (every page clones it), first-launch wizard gating, the sale-transaction boundary (atomic vendas+itens+pagamentos+stock), sale-level discount **proportional distribution** (centavos must sum exactly — largest-remainder allocation), audit-log shape. Plus reviewing the sale-numbering, sale-persistence, and cancellation tasks.
-
-Note the two tells in action: the Toast system *looked* like a small Haiku task but it sets the error pattern every page clones → split into Opus design + Haiku rote pass. The discount feature split too: item-level math is Sonnet, but exact-sum sale-level distribution is Opus money-correctness.
-
-Verify commands in that project: `cargo check` (backend) and `npm run build` (frontend) — substitute the target project's own build/test/check commands.
+Default to **separate sessions** with the model switched per tier file (cheapest, most controllable — each tier keeps a lean context). With Claude Code's Agent tool, you can specify `model` per subagent for in-session dispatch. Confirm the user's preference rather than assuming.
